@@ -1,32 +1,27 @@
 ﻿using FFmpeg.AutoGen;
 using System.Diagnostics;
+using System.Threading;
 
 namespace FfmpegTest
 {
     public partial class Form1 : Form
     {
-        private CancellationTokenSource cancellationTokenSource;
-        private Process process;
+        private CancellationTokenSource _cancellationTokenSource;
         public Form1()
         {
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            cancellationTokenSource?.Cancel();
-            cancellationTokenSource = new CancellationTokenSource();
-            await Task.Run(() => StartStream(cancellationTokenSource.Token));
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource = new CancellationTokenSource();
+            StartStream();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            cancellationTokenSource?.Cancel(); // Dừng stream
+            _cancellationTokenSource?.Cancel(); // Dừng stream
         }
 
         private List<PictureBox> listPictureBoxes()
@@ -114,88 +109,113 @@ namespace FfmpegTest
                 textBox36
             };
         }
-        private void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
+        private async void StartStream()
         {
-            if (e.Data != null)
-            {
-                // Chuyển đổi dữ liệu đầu ra thành hình ảnh
-                byte[] imageBytes = new byte[e.Data.Length]; // Đoạn này cần được sửa để đọc dữ liệu đúng cách
-                using (var ms = new MemoryStream(imageBytes))
+            for (int i = 0; i < listPictureBoxes().Count; i++) {
+                if (!string.IsNullOrWhiteSpace(listTextBox()[i].Text))
                 {
-                    var image = Image.FromStream(ms);
-                    this.Invoke(new Action(() => pictureBox1.Image = image)); // Cập nhật PictureBox
+                    await Task.Run(() => RunFFmpeg(listTextBox()[i].Text, listPictureBoxes()[i]));
                 }
             }
         }
-
-
-        private void StartStream(CancellationToken cancellationToken)
+        private void RunFFmpeg(string rtspUrl, PictureBox pictureBox)
         {
-            var ffmpegPath = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg\\bin\\ffmpeg.exe")).ToString();
-            for (int i = 0; i < listPictureBoxes().Count; i++)
+            int width = pictureBox.Width;
+            int height = pictureBox.Height;
+            // Đường dẫn tới ffmpeg.exe
+            string ffmpegPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg", "bin", "ffmpeg.exe");
+            string arguments;
+            // Các tham số để chạy FFmpeg với RTSP stream
+            if (rtspUrl.Contains("rtsp"))
             {
-                String url = listTextBox()[i].Text;
-                PictureBox pictureBox = listPictureBoxes()[i];
-                int width = pictureBox.Width;
-                int height = pictureBox.Height;
-                if (!string.IsNullOrWhiteSpace(url)) {
-                    var ffmpegArgs = $"ffmpeg -hwaccel dxva2 -i {url} -f image2pipe -vf scale={width}:{height} -vcodec mjpeg -";
-                    try
+                arguments = $"-hwaccel dxva2 -rtsp_transport tcp -i {rtspUrl} -r 15 -vf scale={width}:{height} -fflags nobuffer -analyzeduration 1000000 -f mjpeg -q:v 2 pipe:1";
+            }
+            else if (rtspUrl.Contains("m3u8"))
+            {
+                //arguments = $"-i {rtspUrl} -vf scale={width}:{height} -fflags nobuffer -f mjpeg -q:v 2 pipe:1";
+                //arguments = $"-re -i {rtspUrl} -vf scale={width}:{height} -fflags +discardcorrupt -f mjpeg -q:v 2 pipe:1";
+                arguments = $"-re -i {rtspUrl} -vf scale={width}:{height} -fflags +discardcorrupt -analyzeduration 5000000 -probesize 5000000 -f mjpeg -q:v 2 pipe:1";
+
+
+            }
+            else
+            {
+                throw new ArgumentException("Unsupported stream URL");
+            }
+            //string arguments = $"-hwaccel dxva2 -rtsp_transport tcp -i {rtspUrl} -r 15 -vf scale={width}:{height} -fflags nobuffer -analyzeduration 1000000 -f mjpeg -q:v 2 pipe:1";
+            //string arguments = $"-i {rtspUrl} -vf scale={width}:{height} -fflags nobuffer -f mjpeg -q:v 2 pipe:1";
+
+            using (Process ffmpegProcess = new Process())
+            {
+                ffmpegProcess.StartInfo.FileName = ffmpegPath;
+                ffmpegProcess.StartInfo.Arguments = arguments;
+                ffmpegProcess.StartInfo.UseShellExecute = false;
+                ffmpegProcess.StartInfo.RedirectStandardOutput = true;
+                ffmpegProcess.StartInfo.RedirectStandardError = true;
+                ffmpegProcess.StartInfo.CreateNoWindow = true;
+
+                ffmpegProcess.OutputDataReceived += (sender, e) =>
+                {
+                    Debug.WriteLine(e.Data);
+                };
+
+                // Khởi chạy tiến trình
+                ffmpegProcess.Start();
+
+                // Đọc luồng dữ liệu từ FFmpeg
+                using (Stream output = ffmpegProcess.StandardOutput.BaseStream)
+                {
+                    while (!_cancellationTokenSource.Token.IsCancellationRequested)
                     {
-                        //var processStartInfo = new ProcessStartInfo
-                        //{
-                        //    FileName = ffmpegPath,
-                        //    Arguments = ffmpegArgs,
-                        //    RedirectStandardInput = true,
-                        //    RedirectStandardOutput = true,
-                        //    UseShellExecute = false,
-                        //    CreateNoWindow = true
-                        //};
-                        process = new Process();
-                        process.StartInfo.FileName = ffmpegPath;
-                        process.StartInfo.Arguments = ffmpegArgs;
-                        //process.StartInfo.RedirectStandardInput = true;
-                        process.StartInfo.RedirectStandardOutput = true;
-                        process.StartInfo.UseShellExecute = false;
-                        process.StartInfo.CreateNoWindow = true;
-                        process.OutputDataReceived += OnOutputDataReceived;
-                        process.Start();
-                        process.BeginOutputReadLine();
-
-                        //using (var ffmpegProcess = Process.Start(processStartInfo))
-                        //using (var outputStream = ffmpegProcess.StandardOutput.BaseStream)
-                        //{
-                        //    byte[] buffer = new byte[1024 * 1024]; // Buffer để chứa dữ liệu ảnh
-                        //    MemoryStream memoryStream = new MemoryStream();
-
-                        //    while (!cancellationToken.IsCancellationRequested)
-                        //    {
-                        //        int bytesRead = outputStream.Read(buffer, 0, buffer.Length);
-                        //        if (bytesRead > 0)
-                        //        {
-                        //            memoryStream.Write(buffer, 0, bytesRead);
-
-                        //            try
-                        //            {
-                        //                Image frame = Image.FromStream(memoryStream);
-                        //                memoryStream.SetLength(0); // Reset lại MemoryStream sau khi lấy frame
-
-                        //                // Hiển thị frame trên PictureBox
-                        //                pictureBox.Invoke((MethodInvoker)(() => pictureBox.Image = frame));
-                        //            }
-                        //            catch (Exception)
-                        //            {
-                        //                // Bỏ qua frame nếu không hợp lệ
-                        //            }
-                        //        }
-                        //    }
-                        //}
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                        try
+                        {
+                            // Đọc luồng dữ liệu từ FFmpeg (từng khung hình dạng MJPEG)
+                            var image = ReadFrame(output);
+                            if (image != null)
+                            {
+                                // Cập nhật hình ảnh trên PictureBox trong UI thread
+                                pictureBox.Invoke((MethodInvoker)delegate
+                                {
+                                    pictureBox.Image = image;
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Error: " + ex.Message);
+                            break;
+                        }
                     }
                 }
+
+                ffmpegProcess.WaitForExit();
+            }
+        }
+
+        private Image ReadFrame(Stream outputStream)
+        {
+            try
+            {
+                // Đọc header để xác định kích thước khung hình
+                byte[] buffer = new byte[4096];
+                int bytesRead = 0;
+
+                // Đọc toàn bộ ảnh (frame) từ luồng FFmpeg
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    while ((bytesRead = outputStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        ms.Write(buffer, 0, bytesRead);
+                        if (bytesRead < buffer.Length) break;
+                    }
+                    ms.Seek(0, SeekOrigin.Begin);
+                    return Image.FromStream(ms);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error reading frame: {ex.Message}");
+                return null;
             }
         }
     }

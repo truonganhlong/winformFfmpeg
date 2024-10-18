@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FfmpegTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d7123a1ec72d25103441acbe5898117a62b2dfc")]
 [assembly: System.Reflection.AssemblyProductAttribute("FfmpegTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FfmpegTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

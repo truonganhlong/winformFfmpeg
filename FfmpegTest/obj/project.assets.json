@@ -47,11 +47,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\long.truong\\source\\repos\\FfmpegTest\\FfmpegTest\\FfmpegTest.csproj",
+      "projectUniqueName": "C:\\Users\\long.truong\\Desktop\\winformFfmpeg\\FfmpegTest\\FfmpegTest.csproj",
       "projectName": "FfmpegTest",
-      "projectPath": "C:\\Users\\long.truong\\source\\repos\\FfmpegTest\\FfmpegTest\\FfmpegTest.csproj",
+      "projectPath": "C:\\Users\\long.truong\\Desktop\\winformFfmpeg\\FfmpegTest\\FfmpegTest.csproj",
       "packagesPath": "C:\\Users\\long.truong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\long.truong\\source\\repos\\FfmpegTest\\FfmpegTest\\obj\\",
+      "outputPath": "C:\\Users\\long.truong\\Desktop\\winformFfmpeg\\FfmpegTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -114,7 +114,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

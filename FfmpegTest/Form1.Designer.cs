@@ -67,7 +67,6 @@
             pictureBox36 = new PictureBox();
             panel1 = new Panel();
             button3 = new Button();
-            button2 = new Button();
             button1 = new Button();
             textBox36 = new TextBox();
             textBox35 = new TextBox();
@@ -208,7 +207,7 @@
             // 
             // pictureBox1
             // 
-            //pictureBox1.BackColor = Color.Black;
+            pictureBox1.BackColor = Color.Black;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
@@ -268,6 +267,7 @@
             // 
             // pictureBox7
             // 
+            pictureBox7.BackColor = Color.Black;
             pictureBox7.Dock = DockStyle.Fill;
             pictureBox7.Location = new Point(3, 140);
             pictureBox7.Name = "pictureBox7";
@@ -277,6 +277,7 @@
             // 
             // pictureBox8
             // 
+            pictureBox8.BackColor = Color.Black;
             pictureBox8.Dock = DockStyle.Fill;
             pictureBox8.Location = new Point(225, 140);
             pictureBox8.Name = "pictureBox8";
@@ -286,6 +287,7 @@
             // 
             // pictureBox9
             // 
+            pictureBox9.BackColor = Color.Black;
             pictureBox9.Dock = DockStyle.Fill;
             pictureBox9.Location = new Point(447, 140);
             pictureBox9.Name = "pictureBox9";
@@ -295,6 +297,7 @@
             // 
             // pictureBox10
             // 
+            pictureBox10.BackColor = Color.Black;
             pictureBox10.Dock = DockStyle.Fill;
             pictureBox10.Location = new Point(669, 140);
             pictureBox10.Name = "pictureBox10";
@@ -304,6 +307,7 @@
             // 
             // pictureBox11
             // 
+            pictureBox11.BackColor = Color.Black;
             pictureBox11.Dock = DockStyle.Fill;
             pictureBox11.Location = new Point(891, 140);
             pictureBox11.Name = "pictureBox11";
@@ -313,6 +317,7 @@
             // 
             // pictureBox12
             // 
+            pictureBox12.BackColor = Color.Black;
             pictureBox12.Dock = DockStyle.Fill;
             pictureBox12.Location = new Point(1113, 140);
             pictureBox12.Name = "pictureBox12";
@@ -322,6 +327,7 @@
             // 
             // pictureBox13
             // 
+            pictureBox13.BackColor = Color.Black;
             pictureBox13.Dock = DockStyle.Fill;
             pictureBox13.Location = new Point(3, 277);
             pictureBox13.Name = "pictureBox13";
@@ -331,6 +337,7 @@
             // 
             // pictureBox14
             // 
+            pictureBox14.BackColor = Color.Black;
             pictureBox14.Dock = DockStyle.Fill;
             pictureBox14.Location = new Point(225, 277);
             pictureBox14.Name = "pictureBox14";
@@ -340,6 +347,7 @@
             // 
             // pictureBox15
             // 
+            pictureBox15.BackColor = Color.Black;
             pictureBox15.Dock = DockStyle.Fill;
             pictureBox15.Location = new Point(447, 277);
             pictureBox15.Name = "pictureBox15";
@@ -349,6 +357,7 @@
             // 
             // pictureBox16
             // 
+            pictureBox16.BackColor = Color.Black;
             pictureBox16.Dock = DockStyle.Fill;
             pictureBox16.Location = new Point(669, 277);
             pictureBox16.Name = "pictureBox16";
@@ -358,6 +367,7 @@
             // 
             // pictureBox17
             // 
+            pictureBox17.BackColor = Color.Black;
             pictureBox17.Dock = DockStyle.Fill;
             pictureBox17.Location = new Point(891, 277);
             pictureBox17.Name = "pictureBox17";
@@ -367,6 +377,7 @@
             // 
             // pictureBox18
             // 
+            pictureBox18.BackColor = Color.Black;
             pictureBox18.Dock = DockStyle.Fill;
             pictureBox18.Location = new Point(1113, 277);
             pictureBox18.Name = "pictureBox18";
@@ -376,6 +387,7 @@
             // 
             // pictureBox19
             // 
+            pictureBox19.BackColor = Color.Black;
             pictureBox19.Dock = DockStyle.Fill;
             pictureBox19.Location = new Point(3, 414);
             pictureBox19.Name = "pictureBox19";
@@ -385,6 +397,7 @@
             // 
             // pictureBox20
             // 
+            pictureBox20.BackColor = Color.Black;
             pictureBox20.Dock = DockStyle.Fill;
             pictureBox20.Location = new Point(225, 414);
             pictureBox20.Name = "pictureBox20";
@@ -394,6 +407,7 @@
             // 
             // pictureBox21
             // 
+            pictureBox21.BackColor = Color.Black;
             pictureBox21.Dock = DockStyle.Fill;
             pictureBox21.Location = new Point(447, 414);
             pictureBox21.Name = "pictureBox21";
@@ -403,6 +417,7 @@
             // 
             // pictureBox22
             // 
+            pictureBox22.BackColor = Color.Black;
             pictureBox22.Dock = DockStyle.Fill;
             pictureBox22.Location = new Point(669, 414);
             pictureBox22.Name = "pictureBox22";
@@ -412,6 +427,7 @@
             // 
             // pictureBox23
             // 
+            pictureBox23.BackColor = Color.Black;
             pictureBox23.Dock = DockStyle.Fill;
             pictureBox23.Location = new Point(891, 414);
             pictureBox23.Name = "pictureBox23";
@@ -421,6 +437,7 @@
             // 
             // pictureBox24
             // 
+            pictureBox24.BackColor = Color.Black;
             pictureBox24.Dock = DockStyle.Fill;
             pictureBox24.Location = new Point(1113, 414);
             pictureBox24.Name = "pictureBox24";
@@ -430,6 +447,7 @@
             // 
             // pictureBox25
             // 
+            pictureBox25.BackColor = Color.Black;
             pictureBox25.Dock = DockStyle.Fill;
             pictureBox25.Location = new Point(3, 551);
             pictureBox25.Name = "pictureBox25";
@@ -439,6 +457,7 @@
             // 
             // pictureBox26
             // 
+            pictureBox26.BackColor = Color.Black;
             pictureBox26.Dock = DockStyle.Fill;
             pictureBox26.Location = new Point(225, 551);
             pictureBox26.Name = "pictureBox26";
@@ -448,6 +467,7 @@
             // 
             // pictureBox27
             // 
+            pictureBox27.BackColor = Color.Black;
             pictureBox27.Dock = DockStyle.Fill;
             pictureBox27.Location = new Point(447, 551);
             pictureBox27.Name = "pictureBox27";
@@ -457,6 +477,7 @@
             // 
             // pictureBox28
             // 
+            pictureBox28.BackColor = Color.Black;
             pictureBox28.Dock = DockStyle.Fill;
             pictureBox28.Location = new Point(669, 551);
             pictureBox28.Name = "pictureBox28";
@@ -466,6 +487,7 @@
             // 
             // pictureBox29
             // 
+            pictureBox29.BackColor = Color.Black;
             pictureBox29.Dock = DockStyle.Fill;
             pictureBox29.Location = new Point(891, 551);
             pictureBox29.Name = "pictureBox29";
@@ -475,6 +497,7 @@
             // 
             // pictureBox30
             // 
+            pictureBox30.BackColor = Color.Black;
             pictureBox30.Dock = DockStyle.Fill;
             pictureBox30.Location = new Point(1113, 551);
             pictureBox30.Name = "pictureBox30";
@@ -484,6 +507,7 @@
             // 
             // pictureBox31
             // 
+            pictureBox31.BackColor = Color.Black;
             pictureBox31.Dock = DockStyle.Fill;
             pictureBox31.Location = new Point(3, 688);
             pictureBox31.Name = "pictureBox31";
@@ -493,6 +517,7 @@
             // 
             // pictureBox32
             // 
+            pictureBox32.BackColor = Color.Black;
             pictureBox32.Dock = DockStyle.Fill;
             pictureBox32.Location = new Point(225, 688);
             pictureBox32.Name = "pictureBox32";
@@ -502,6 +527,7 @@
             // 
             // pictureBox33
             // 
+            pictureBox33.BackColor = Color.Black;
             pictureBox33.Dock = DockStyle.Fill;
             pictureBox33.Location = new Point(447, 688);
             pictureBox33.Name = "pictureBox33";
@@ -511,6 +537,7 @@
             // 
             // pictureBox34
             // 
+            pictureBox34.BackColor = Color.Black;
             pictureBox34.Dock = DockStyle.Fill;
             pictureBox34.Location = new Point(669, 688);
             pictureBox34.Name = "pictureBox34";
@@ -520,6 +547,7 @@
             // 
             // pictureBox35
             // 
+            pictureBox35.BackColor = Color.Black;
             pictureBox35.Dock = DockStyle.Fill;
             pictureBox35.Location = new Point(891, 688);
             pictureBox35.Name = "pictureBox35";
@@ -529,6 +557,7 @@
             // 
             // pictureBox36
             // 
+            pictureBox36.BackColor = Color.Black;
             pictureBox36.Dock = DockStyle.Fill;
             pictureBox36.Location = new Point(1113, 688);
             pictureBox36.Name = "pictureBox36";
@@ -540,7 +569,6 @@
             // 
             tableLayoutPanel1.SetColumnSpan(panel1, 6);
             panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(textBox36);
             panel1.Controls.Add(textBox35);
@@ -586,23 +614,13 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1091, 85);
+            button3.Location = new Point(1091, 65);
             button3.Name = "button3";
             button3.Size = new Size(154, 23);
             button3.TabIndex = 38;
             button3.Text = "Stop";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(1091, 56);
-            button2.Name = "button2";
-            button2.Size = new Size(154, 23);
-            button2.TabIndex = 37;
-            button2.Text = "Pause";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -958,7 +976,6 @@
         private PictureBox pictureBox36;
         private Panel panel1;
         private TextBox textBox1;
-        private Button button2;
         private Button button1;
         private TextBox textBox36;
         private TextBox textBox35;
